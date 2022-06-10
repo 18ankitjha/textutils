@@ -40,7 +40,7 @@ export default function Textform(props) {
         else if(words.charAt(words.length-1)===' '){
             return words.split(' ').length-1;
         }
-        return words.split(' ').length;
+        return words.split(/\s/).length;
     }
     
     return (
@@ -49,18 +49,18 @@ export default function Textform(props) {
 
                 <h1>{props.heading}</h1>
                 <div className="form-group">
-                    <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='light'?'white':'grey',color:props.mode==='dark'?'white':'black'}}></textarea>
+                    <textarea className="form-control" id="myBox" rows="8" value={text} onChange={handleOnChange} style={{backgroundColor:props.mode==='light'?'white':'#97b2c1',color:props.mode==='dark'?'white':'black'}}></textarea>
                 </div>
-                <button className="btn btn-primary my-3 mx-2" onClick={handleUpClick}>
+                <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleUpClick}>
                     Convert to uppercase
                 </button>
-                <button className="btn btn-primary my-3" onClick={handleLowerCase}>
+                <button disabled={text.length===0} className="btn btn-primary my-3" onClick={handleLowerCase}>
                     Convert to LowerCase
                 </button>
-                <button className="btn btn-primary my-3 mx-2" onClick={handleclear}>
+                <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleclear}>
                     Clear
                 </button>
-                <button className="btn btn-primary my-3 mx-2" onClick={handleCopy}>
+                <button disabled={text.length===0} className="btn btn-primary my-3 mx-2" onClick={handleCopy}>
                     Copy
                 </button>
            </div>
@@ -70,7 +70,7 @@ export default function Textform(props) {
                 <p>{countword(text)} words and {text.length} characters</p>
                 <p>{0.008*countword(text)} Minutes to read</p>
                 <h2>Preview</h2>
-                <p>{text.length>0?0:'Enter something to preview'}</p>
+                <p>{text.length>0?0:'Nothing to read'}</p>
             </div>
         </>
     )
